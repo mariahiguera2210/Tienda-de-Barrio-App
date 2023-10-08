@@ -4,8 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Product producto = new Product("Arroz ", 19.99, 100);
 
-        // Ahora 'producto' es una instancia de la clase Product que puedes utilizar
-        // Puedes acceder a sus atributos y métodos
         System.out.println("Nombre del producto: " + producto.getName());
         System.out.println("Precio del producto: $" + producto.getPrice());
         System.out.println("Existencias del producto: " + producto.getStock());
