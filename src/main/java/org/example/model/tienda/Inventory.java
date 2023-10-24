@@ -8,14 +8,11 @@ import java.util.Scanner;
 
 public class Inventory implements GestorInventario {
     ArrayList<Product> listOfProducts = new ArrayList<Product>();
-    Scanner sc = new Scanner(System.in);
 
+    Scanner sc = new Scanner(System.in);
 
         @Override
         public void addProductFromUser () {
-
-            System.out.println("Ingrese id ");
-            String id = sc.nextLine();
 
             System.out.println("Ingrese nombre ");
             String name = sc.nextLine();
@@ -30,11 +27,12 @@ public class Inventory implements GestorInventario {
             System.out.println("ingrese la categoria ");
             String category = sc.nextLine();
 
-            Product nuevoProducto = new Product(id, name, price, description, category);
+
+            Product nuevoProducto = new Product(name, price, description, category);
 
             addProduct(nuevoProducto);
-        }
 
+        }
         private void addProduct (Product product){
 
             if (!listOfProducts.contains(product)) {
@@ -51,15 +49,14 @@ public class Inventory implements GestorInventario {
             }
         }
 
-
         @Override
         public void removeProduct () {
             System.out.println("Ingresa ID del producto que quiere eliminar");
-            String productId = sc.nextLine();
+            int productId = sc.nextInt();
 
             boolean removed = false;
             for (Product p: listOfProducts)
-                  { if (p.getId().equals(productId)){
+                  { if (p.getId() == productId){
                       listOfProducts.remove(p);
                       System.out.println("El producto ha sido eliminado");
                       removed = true;
@@ -73,13 +70,14 @@ public class Inventory implements GestorInventario {
 
         @Override
         public void updateProduct () {
-            System.out.println("Ingresa ID del producto que quiere eliminar");
-            String productId = sc.nextLine();
+            System.out.println("Ingresa ID del producto que quiere actualizar");
+            int productId = sc.nextInt();
+            sc.nextLine();
 
             Product productToUpdate = null;
             //Busco el producto
             for (Product p: listOfProducts){
-                if( p.getId().equals(productId)){
+                if(p.getId() == productId){
                     productToUpdate = p;
                     break;
                 }
@@ -89,10 +87,10 @@ public class Inventory implements GestorInventario {
                 System.out.println("Ingrese nuevo nombre del producto: ");
                 String newName = sc.nextLine();
                 System.out.println("Ingrese nuevo precio: ");
-                int newPrice = sc.nextInt();
+                double newPrice = sc.nextDouble();
+                sc.nextLine();
                 System.out.println("Ingrese nueva descripcion: ");
                 String newDescription = sc.nextLine();
-                sc.nextLine();
                 System.out.println("Ingrese nueva Categoria: ");
                 String newCategory = sc.nextLine();
 
@@ -107,10 +105,7 @@ public class Inventory implements GestorInventario {
             else {
                 System.out.println("Producto no encontrado con el ID especificado.");
             }
-
         }
-
-
 }
 
 

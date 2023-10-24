@@ -2,7 +2,8 @@ package org.example.model.tienda;
 
 public class Product {
 
-    private String id;
+    int id;
+
     private String name;
     private double price;
 
@@ -10,18 +11,26 @@ public class Product {
 
     private String category;
 
-    public Product(String id, String name, double price, String description, String category) {
-        this.id = id;
+    private static int nextId = 1;
+
+    public Product(String name, double price, String description, String category) {
+        this.id = nextId;
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
+        nextId++;
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
     public String getName(){
         return name;
     }
@@ -54,14 +63,15 @@ public class Product {
         this.category = category;
     }
 
+
+
+
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", categoria='" + category + '\'' +
-                '}';
+        return "ID: " + id + "\n" +
+                "Nombre: " + name + "\n" +
+                "Precio: " + price + "\n" +
+                "Descripción: " + description + "\n" +
+                "Categoría: " + category;
     }
 }
