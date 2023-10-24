@@ -1,30 +1,48 @@
 package org.example;
-import org.example.model.Product;
+
+import org.example.model.tienda.Inventory;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Product producto = new Product("Arroz ", 19.99, 100);
 
-        System.out.println("Nombre del producto: " + producto.getName());
-        System.out.println("Precio del producto: $" + producto.getPrice());
-        System.out.println("Existencias del producto: " + producto.getStock());
-        if(producto.outOfStock()){
-            System.out.println("El producto " + producto.getName() + "esta agotado");
-        } else {
-            System.out.println("El producto " + producto.getName() + "esta disponible");
+        Scanner scanner = new Scanner(System.in);
+        Inventory inventory = new Inventory();
+
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("±----------------------------------------±");
+            System.out.println("|   Administrador Mi Tienda de Barrio    |");
+            System.out.println("±----------------------------------------±");
+            System.out.println("1. Agregar producto                      |");
+            System.out.println("2. Eliminar producto                     |");
+            System.out.println("3. Actualizar producto                   |");
+            System.out.println("4. Ver todos los productos               |");
+            System.out.println("5. Salir                                  |");
+            System.out.println("±----------------------------------------±");
+            System.out.print("   Ingresa tu opción (1 - 5): \n");
+
+
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+
+            switch (choice) {
+                case 1 -> inventory.addProductFromUser();
+                case 2 -> inventory.removeProduct();
+                case 3 -> inventory.updateProduct();
+                case 4 -> inventory.allProducts();
+                case 5 -> {
+                    System.out.println("Saliendo...");
+                    exit = true;
+                }
+                default -> System.out.println("Opción inválida. Por favor, intenta de nuevo.");
+            }
         }
 
-        double valorFijo = 19.99;
-        if (producto.biggerPrice(valorFijo)) {
-            System.out.println("El precio del producto " + producto.getName() + " es mayor al valor fijo : $" + valorFijo);
-        }
-        else{
-            System.out.println("El precio del product " + producto.getName()+ "es menor o igual al valor fijo: $ " + valorFijo);
-        }
-        String palabra = "rroz";
-        if(producto.containWord(palabra)){
-            System.out.println("El nombre del producto contiente la palabra " + palabra);
-        }else {
-            System.out.println("El nombre del producto no contiene la palbara " + palabra);
-        }
     }
 }
+
+
