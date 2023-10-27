@@ -52,7 +52,6 @@ public class Main {
             } catch (Exception error) {
                     throw new InvalidMenuOptions("Ingresa una opcion valida");
                     }
-                scanner.nextLine();
             }
         }
         else {

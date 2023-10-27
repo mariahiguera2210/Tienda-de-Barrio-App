@@ -3,12 +3,12 @@ package org.example.model.tienda;
 import org.example.GestorInventario;
 
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Inventory implements GestorInventario {
     ArrayList<Product> listOfProducts = new ArrayList<Product>();
-
 
     Scanner sc = new Scanner(System.in);
 
@@ -25,19 +25,21 @@ public class Inventory implements GestorInventario {
             System.out.println("ingrese la descripcion ");
             String description = sc.nextLine();
 
-            System.out.println("Ingrese una de las categorias disponibles" );
-            for (Enums.Category category: Enums.Category.values()){
-                System.out.println(category);
+            System.out.println("Ingrese una de las siguientes categorias" );
+            for (Enums.Categories c: Enums.Categories.values()){
+                System.out.println(c);
             }
             String category = sc.nextLine().toUpperCase();
 
-            System.out.println("Ingrese una de las etiquetas disponibles" );
+            System.out.println("Ingrese una de las siguientes etiquetas " );
             for (Enums.Etiquetas etiquetas: Enums.Etiquetas.values()){
                 System.out.println(etiquetas);
             }
             String tag = sc.nextLine().toUpperCase();
 
-            Product nuevoProducto = new Product(name, price, description, category, tag);
+            Date dateAdded = Calendar.getInstance().getTime();
+
+            Product nuevoProducto = new Product(name, price, description, category, tag, dateAdded);
 
             addProduct(nuevoProducto);
 
@@ -51,6 +53,7 @@ public class Inventory implements GestorInventario {
             }
 
             System.out.println("Producto agregado al inventario.");
+
         }
 
         public void allProducts () {
@@ -104,11 +107,17 @@ public class Inventory implements GestorInventario {
                 String newDescription = sc.nextLine();
                 System.out.println("Ingrese nueva Categoria: ");
                 String newCategory = sc.nextLine();
+                System.out.println("Ingrese nueva Etiqueta: ");
+                String newTag = sc.nextLine();
+
+                Date dateUpdated = Calendar.getInstance().getTime();
 
                 productToUpdate.setName(newName);
                 productToUpdate.setPrice(newPrice);
                 productToUpdate.setDescription(newDescription);
                 productToUpdate.setCategory(newCategory);
+                productToUpdate.setTag(newTag);
+                productToUpdate.setDateAdded(dateUpdated);
 
                 System.out.println("El producrto ha sido actualizado ");
             }
