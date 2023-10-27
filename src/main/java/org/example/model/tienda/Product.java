@@ -1,24 +1,27 @@
 package org.example.model.tienda;
 
+import java.util.Date;
+
 public class Product {
 
     int id;
 
     private String name;
     private double price;
-
     private String description;
-
     private String category;
-
+    private String tag;
+    Date dateAdded;
     private static int nextId = 1;
 
-    public Product(String name, double price, String description, String category) {
+    public Product(String name, double price, String description, String category, String tag, Date dateAdded) {
         this.id = nextId;
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
+        this.tag = tag;
+        this.dateAdded = dateAdded;
         nextId++;
     }
 
@@ -58,13 +61,23 @@ public class Product {
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
 
+    public String getTag(){ return tag; }
 
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
 
     @Override
     public String toString() {
@@ -72,6 +85,10 @@ public class Product {
                 "Nombre: " + name + "\n" +
                 "Precio: " + price + "\n" +
                 "Descripción: " + description + "\n" +
-                "Categoría: " + category;
+                "Categoría: " + category + "\n"+
+                "Etiqueta: " + tag + "\n"+
+                "Fecha de actualizacion: " + dateAdded;
     }
+
+
 }
