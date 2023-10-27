@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Inventory implements GestorInventario {
     ArrayList<Product> listOfProducts = new ArrayList<Product>();
 
+
     Scanner sc = new Scanner(System.in);
 
         @Override

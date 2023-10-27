@@ -1,23 +1,27 @@
 package org.example;
 
+import org.example.exceptions.InvalidMenuOptions;
 import org.example.model.tienda.Inventory;
-import org.example.model.tienda.Usuario;
+import org.example.model.tienda.User;
+
 
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
 
         Inventory inventory = new Inventory();
-        Usuario usuario= new Usuario("admin123", "1234");
-        System.out.println("Ingresa tu usario: ");
+        User user = new User("admin123", "1234");
+        System.out.println("Ingresa tu nombre de usario: ");
         String inputUsuario = scanner.nextLine();
         System.out.println("Ingresa contraseña: ");
         String inputPasword= scanner.nextLine();
 
 
-        if(inputUsuario.equals(usuario.getUsuarioId()) && inputPasword.equals(usuario.getUsuarioPasword())){
+        if(inputUsuario.equals(user.getUserId()) && inputPasword.equals(user.getUserPasword())){
+
+
             boolean exit = false;
             while (!exit) {
                 System.out.println("±----------------------------------------±");
@@ -31,9 +35,9 @@ public class Main {
                 System.out.println("±----------------------------------------±");
                 System.out.print("   Ingresa tu opción (1 - 5): \n");
 
+                try {
                 int choice = scanner.nextInt();
                 scanner.nextLine();
-
                 switch (choice) {
                     case 1 -> inventory.addProductFromUser();
                     case 2 -> inventory.removeProduct();
@@ -45,6 +49,10 @@ public class Main {
                     }
                     default -> System.out.println("Opción inválida. Por favor, intenta de nuevo.");
                 }
+            } catch (Exception error) {
+                    throw new InvalidMenuOptions("Ingresa una opcion valida");
+                    }
+                scanner.nextLine();
             }
         }
         else {
