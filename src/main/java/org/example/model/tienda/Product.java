@@ -10,15 +10,17 @@ public class Product {
     private String description;
 
     private String category;
+    private String tag;
 
     private static int nextId = 1;
 
-    public Product(String name, double price, String description, String category) {
+    public Product(String name, double price, String description, String category,String tag) {
         this.id = nextId;
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
+        this.tag = tag;
         nextId++;
     }
 
@@ -58,10 +60,11 @@ public class Product {
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getTag(){return tag;}
 
 
 
@@ -74,4 +77,6 @@ public class Product {
                 "Descripción: " + description + "\n" +
                 "Categoría: " + category;
     }
+
+
 }

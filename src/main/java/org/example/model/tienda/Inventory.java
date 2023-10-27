@@ -25,15 +25,25 @@ public class Inventory implements GestorInventario {
             System.out.println("ingrese la descripcion ");
             String description = sc.nextLine();
 
-            System.out.println("ingrese la categoria ");
-            String category = sc.nextLine();
+            System.out.println("Ingrese una de las categorias disponibles" );
+            for (Enums.Category category: Enums.Category.values()){
+                System.out.println(category);
+            }
+            String category = sc.nextLine().toUpperCase();
 
+            System.out.println("Ingrese una de las etiquetas disponibles" );
+            for (Enums.Etiquetas etiquetas: Enums.Etiquetas.values()){
+                System.out.println(etiquetas);
+            }
+            String tag = sc.nextLine().toUpperCase();
 
-            Product nuevoProducto = new Product(name, price, description, category);
+            Product nuevoProducto = new Product(name, price, description, category, tag);
 
             addProduct(nuevoProducto);
 
         }
+
+
         private void addProduct (Product product){
 
             if (!listOfProducts.contains(product)) {
