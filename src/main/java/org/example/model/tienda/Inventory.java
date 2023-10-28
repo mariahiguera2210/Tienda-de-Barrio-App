@@ -126,6 +126,30 @@ public class Inventory implements GestorInventario {
                 System.out.println("Producto no encontrado con el ID especificado.");
             }
         }
+
+    @Override
+    public void findById() {
+
+        System.out.println("Ingresa el id del producto a buscar ");
+
+        try {
+        int productId = sc.nextInt();
+        sc.nextLine();
+
+        for (Product product: listOfProducts) {
+            if (product.getId() == productId) {
+                System.out.println("El producto que busca es" + product);
+            }
+            else System.out.println("No hay un producto con ese id ");
+        }
+
+        } catch (Exception error){
+            System.out.println("valor ingresado no valido");
+        }
+
+
+    }
+
 }
 
 

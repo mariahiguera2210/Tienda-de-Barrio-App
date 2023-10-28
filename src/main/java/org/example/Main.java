@@ -30,8 +30,9 @@ public class Main {
                 System.out.println("1. Agregar producto                      |");
                 System.out.println("2. Eliminar producto                     |");
                 System.out.println("3. Actualizar producto                   |");
-                System.out.println("4. Ver todos los productos               |");
-                System.out.println("5. Salir                                  |");
+                System.out.println("4. Ver lista de productos                |");
+                System.out.println("5. Buscar producto por id                |");
+                System.out.println("6. Salir                                 |");
                 System.out.println("±----------------------------------------±");
                 System.out.print("   Ingresa tu opción (1 - 5): \n");
 
@@ -43,7 +44,8 @@ public class Main {
                     case 2 -> inventory.removeProduct();
                     case 3 -> inventory.updateProduct();
                     case 4 -> inventory.allProducts();
-                    case 5 -> {
+                    case 5 -> inventory.findById();
+                    case 6 -> {
                         System.out.println("Saliendo...");
                         exit = true;
                     }
