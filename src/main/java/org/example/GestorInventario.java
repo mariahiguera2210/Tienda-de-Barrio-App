@@ -9,5 +9,6 @@ public interface GestorInventario {
 
     public void updateProduct();
 
-
+    public void findById();
+    
 }
