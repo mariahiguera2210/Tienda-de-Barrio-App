@@ -19,7 +19,7 @@ public class Main {
         String inputPasword= scanner.nextLine();
 
 
-        if(inputUsuario.equals(user.getUserId()) && inputPasword.equals(user.getUserPasword())){
+        if(inputUsuario.equals(user.getUserId()) && inputPasword.equals(user.getUserPassword())){
 
 
             boolean exit = false;
@@ -44,7 +44,7 @@ public class Main {
                     case 2 -> inventory.removeProduct();
                     case 3 -> inventory.updateProduct();
                     case 4 -> inventory.allProducts();
-                    case 5 -> inventory.findById();
+                    case 5 -> inventory.findByName();
                     case 6 -> {
                         System.out.println("Saliendo...");
                         exit = true;

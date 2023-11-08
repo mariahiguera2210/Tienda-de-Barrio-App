@@ -4,50 +4,35 @@ import java.util.Date;
 
 public class Product {
 
-    int id;
 
     private String name;
-    private double price;
-    private String description;
-    private String category;
-    private String tag;
-    Date dateAdded;
-    private static int nextId = 1;
 
-    public Product(String name, double price, String description, String category, String tag, Date dateAdded) {
-        this.id = nextId;
+    private String description;
+
+    private String category;
+
+    private String tag;
+
+    private float price;
+
+    private String imageUrl;
+
+
+    public Product(String name, String description, String category, String tag, float price, String imageUrl) {
         this.name = name;
-        this.price = price;
         this.description = description;
         this.category = category;
         this.tag = tag;
-        this.dateAdded = dateAdded;
-        nextId++;
+        this.price = price;
+        this.imageUrl = imageUrl;
     }
 
-
-    public int getId() {
-        return id;
-    }
-
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getDescription() {
@@ -61,34 +46,39 @@ public class Product {
     public String getCategory() {
         return category;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
 
-    public String getTag(){ return tag; }
+    public String getTags() {
+        return tag;
+    }
 
     public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public Date getDateAdded() {
-        return dateAdded;
+
+    public float getPrice() {
+        return price;
     }
 
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + "\n" +
-                "Nombre: " + name + "\n" +
-                "Precio: " + price + "\n" +
-                "Descripción: " + description + "\n" +
-                "Categoría: " + category + "\n"+
-                "Etiqueta: " + tag + "\n"+
-                "Fecha de actualizacion: " + dateAdded;
+        return "Product{" +
+                "name:'" + name + '\'' + ", description: '" + description + '\'' + ", category: '" + category + '\'' + ", tags: '" + tag + '\'' + ", price: " + price + ", imageUrl: '" + imageUrl + '\'' + '}';
     }
-
-
 }

@@ -2,10 +2,7 @@ package org.example.model.tienda;
 
 import org.example.GestorInventario;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Inventory implements GestorInventario {
     ArrayList<Product> listOfProducts = new ArrayList<Product>();
@@ -17,10 +14,6 @@ public class Inventory implements GestorInventario {
 
             System.out.println("Ingrese nombre ");
             String name = sc.nextLine();
-
-            System.out.println("Ingrese precio ");
-            double price = sc.nextDouble();
-            sc.nextLine();
 
             System.out.println("ingrese la descripcion ");
             String description = sc.nextLine();
@@ -37,14 +30,18 @@ public class Inventory implements GestorInventario {
             }
             String tag = sc.nextLine().toUpperCase();
 
-            Date dateAdded = Calendar.getInstance().getTime();
+            System.out.println("Ingrese precio ");
+            float price = sc.nextFloat();
+            sc.nextLine();
 
-            Product nuevoProducto = new Product(name, price, description, category, tag, dateAdded);
+            System.out.println("Ingrese url de imagen");
+            String imageUrl = sc.nextLine();
+
+
+            Product nuevoProducto = new Product(name, description, category, tag, price, imageUrl);
 
             addProduct(nuevoProducto);
-
         }
-
 
         private void addProduct (Product product){
 
@@ -65,12 +62,12 @@ public class Inventory implements GestorInventario {
 
         @Override
         public void removeProduct () {
-            System.out.println("Ingresa ID del producto que quiere eliminar");
-            int productId = sc.nextInt();
+            System.out.println("Ingresa nombre del producto que quiere eliminar");
+            String productName = sc.nextLine();
 
             boolean removed = false;
             for (Product p: listOfProducts)
-                  { if (p.getId() == productId){
+                  { if (Objects.equals(p.getName(), productName)){
                       listOfProducts.remove(p);
                       System.out.println("El producto ha sido eliminado");
                       removed = true;
@@ -84,14 +81,14 @@ public class Inventory implements GestorInventario {
 
         @Override
         public void updateProduct () {
-            System.out.println("Ingresa ID del producto que quiere actualizar");
-            int productId = sc.nextInt();
+            System.out.println("Ingresa nombre del producto que quiere actualizar");
+            String productName = sc.nextLine();
             sc.nextLine();
 
             Product productToUpdate = null;
             //Busco el producto
             for (Product p: listOfProducts){
-                if(p.getId() == productId){
+                if(Objects.equals(p.getName(), productName)){
                     productToUpdate = p;
                     break;
                 }
@@ -100,44 +97,47 @@ public class Inventory implements GestorInventario {
             if(productToUpdate != null){
                 System.out.println("Ingrese nuevo nombre del producto: ");
                 String newName = sc.nextLine();
-                System.out.println("Ingrese nuevo precio: ");
-                double newPrice = sc.nextDouble();
-                sc.nextLine();
                 System.out.println("Ingrese nueva descripcion: ");
                 String newDescription = sc.nextLine();
                 System.out.println("Ingrese nueva Categoria: ");
                 String newCategory = sc.nextLine();
+                System.out.println("Ingrese nuevo precio: ");
+                float newPrice = sc.nextFloat();
+                sc.nextLine();
                 System.out.println("Ingrese nueva Etiqueta: ");
                 String newTag = sc.nextLine();
+                System.out.println("Ingrese nuevo url de imagen");
+                String newImageUrl = sc.nextLine();
 
-                Date dateUpdated = Calendar.getInstance().getTime();
 
                 productToUpdate.setName(newName);
-                productToUpdate.setPrice(newPrice);
                 productToUpdate.setDescription(newDescription);
                 productToUpdate.setCategory(newCategory);
                 productToUpdate.setTag(newTag);
-                productToUpdate.setDateAdded(dateUpdated);
+                productToUpdate.setPrice(newPrice);
+                productToUpdate.setImageUrl(newImageUrl);
+
 
                 System.out.println("El producrto ha sido actualizado ");
             }
 
             else {
-                System.out.println("Producto no encontrado con el ID especificado.");
+                System.out.println("Producto no encontrado con el nombre especificado.");
             }
         }
 
-    @Override
-    public void findById() {
 
-        System.out.println("Ingresa el id del producto a buscar ");
+    @Override
+    public void findByName(){
+
+        System.out.println("Ingresa el nombre del producto a buscar ");
 
         try {
-        int productId = sc.nextInt();
-        sc.nextLine();
+            String productName = sc.nextLine();
+            sc.nextLine();
 
         for (Product product: listOfProducts) {
-            if (product.getId() == productId) {
+            if (Objects.equals(product.getName(), productName)) {
                 System.out.println("El producto que busca es" + product);
             }
             else System.out.println("No hay un producto con ese id ");
