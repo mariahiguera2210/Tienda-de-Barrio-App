@@ -34,7 +34,7 @@ public class Main {
                 System.out.println("5. Buscar producto por id                |");
                 System.out.println("6. Salir                                 |");
                 System.out.println("±----------------------------------------±");
-                System.out.print("   Ingresa tu opción (1 - 5): \n");
+                System.out.print("   Ingresa tu opción (1 - 6): \n");
 
                 try {
                 int choice = scanner.nextInt();

@@ -25,13 +25,13 @@ public class Inventory implements GestorInventario {
             System.out.println("ingrese la descripcion ");
             String description = sc.nextLine();
 
-            System.out.println("Ingrese una de las siguientes categorias" );
+            System.out.println("Seleccione una de las siguientes categorias" );
             for (Enums.Categories c: Enums.Categories.values()){
                 System.out.println(c);
             }
             String category = sc.nextLine().toUpperCase();
 
-            System.out.println("Ingrese una de las siguientes etiquetas " );
+            System.out.println("Seleccione una de las siguientes etiquetas " );
             for (Enums.Etiquetas etiquetas: Enums.Etiquetas.values()){
                 System.out.println(etiquetas);
             }
