@@ -1,23 +1,33 @@
 package org.example;
 
+import org.example.model.tienda.AddNewProduct;
 import org.example.model.tienda.Product;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CSVProductLoader {
+    List<Product> productList;
 
-    private static final String CSV_FILE = "resources/inventoryData.csv";
-    public static List<Product> loadProductsFromCSV() {
-        List<Product> productList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
-            String line;
-            while ((line = br.readLine()) != null) {
+
+    public CSVProductLoader(){
+        productList =new ArrayList<>();
+    }
+
+
+    public void loadProductsFromCSV(String csvFilePath){
+        try {
+            File file = new File(csvFilePath);
+            Scanner fileScanner = new Scanner(file);
+            //Saltar el encabezado del CSV
+            fileScanner.nextLine();
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
                 String[] productInfo = line.split(",");
                 if (productInfo.length == 6) {
+
                     String name = productInfo[0];
                     String description = productInfo[1];
                     String category = productInfo[2];
@@ -27,12 +37,23 @@ public class CSVProductLoader {
                     Product product = new Product(name, description, category, tags, price, imageUrl);
                     System.out.println(product);
                     productList.add(product);
+
                 }
+                System.out.println(line);
             }
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public List<Product> getProductList() {
         return productList;
     }
+
+
+
+
+
 
 }
