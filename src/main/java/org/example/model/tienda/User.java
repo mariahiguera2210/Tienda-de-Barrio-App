@@ -2,18 +2,18 @@ package org.example.model.tienda;
 
 public class User {
     String userId;
-    String userPasword;
+    String userPassword;
 
-    public User(String userId, String userPasword) {
+    public User(String userId, String userPassword) {
         this.userId = userId;
-        this.userPasword = userPasword;
+        this.userPassword = userPassword;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public String getUserPasword() {
-        return userPasword;
+    public String getUserPassword() {
+        return userPassword;
     }
 }
